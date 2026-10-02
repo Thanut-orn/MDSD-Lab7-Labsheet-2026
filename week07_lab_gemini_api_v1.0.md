@@ -535,8 +535,10 @@ flutter run
 
 > ✅ **Checkpoint 2.1** รันแอปด้วยคำสั่ง `flutter run --dart-define=GEMINI_API_KEY=your_key` ถ่ายภาพหน้าจอ Debug Console และหน้า SnackBar ที่แสดงข้อความคำตอบจาก Gemini และอธิบายด้านล่าง ว่า `.timeout()` ที่ตั้งไว้กับ Gemini API (20 วินาที) ต่างจากที่ตั้งไว้กับ OpenWeather API ในสัปดาห์ที่แล้ว (10 วินาที) อย่างไร และทำไมจึงต่างกัน (อ้างอิงบทหนังสือเรียนหัวข้อ 7.3)
 
-```text
-บันทึกผลลัพธ์ที่นี่
+<img width="1917" height="1016" alt="image" src="https://github.com/user-attachments/assets/41c218e2-ebd7-4725-891e-c2cd4b0ec167" />
+<img width="1917" height="977" alt="image" src="https://github.com/user-attachments/assets/aa24a606-2bab-4ca4-b8b5-6e99d78f853f" />
+```
+Gemini API เป็น Large Language Model (LLM) ซึ่งต้องใช้เวลาในการทำ Inference ประมวลผลและสร้างโทเคนคำตอบ (Token Generation) ตามความซับซ้อนของ Prompt จึงต้องเผื่อเวลา Timeout ไว้นานกว่า (20 วินาที) แตกต่างจาก OpenWeather API ที่เป็นการดึงข้อมูลสภาพอากาศสำเร็จรูปจากฐานข้อมูล (Database Query) ซึ่งประมวลผลได้เร็วมาก จึงตั้ง Timeout ไว้สั้นกว่าได้ (10 วินาที)
 ```
 
 ---
@@ -901,9 +903,9 @@ class MyApp extends StatelessWidget {
 
 > ✅ **Checkpoint 3.1** รันแอปแล้วทดสอบกด Bottom Navigation Bar สลับไปมาระหว่าง "หน้าหลัก" กับ "ลงประกาศขาย" อย่างน้อย 3 รอบ ถ่ายภาพหน้าจอ 2 ภาพ คือ (ก) Tab หน้าหลักที่มี Bottom Navigation Bar แสดงอยู่ด้านล่าง และ (ข) Tab ลงประกาศขายที่เลือกรูปภาพสินค้าไว้แล้ว จากนั้นทดสอบเพิ่มเติมว่าเลือกรูปภาพไว้ใน Tab ลงประกาศขาย แล้วสลับไป Tab หน้าหลักแล้วสลับกลับมา รูปภาพที่เลือกไว้ยังอยู่หรือไม่ (ถ้าหายไป แปลว่ายังใช้ `IndexedStack` ไม่ถูกต้อง ให้ตรวจสอบโค้ดใน `MainScaffold` อีกครั้ง) และทดสอบว่าไอคอนตะกร้าใน AppBar ของ Tab หน้าหลักยังกดไปหน้า Checkout ได้ตามปกติเหมือนที่ทดสอบไว้แล้วใน Checkpoint 0.1
 
-```text
-บันทึกผลลัพธ์ที่นี่
-```
+<img width="1917" height="1011" alt="image" src="https://github.com/user-attachments/assets/6a8d608a-beea-432d-b71f-36c74c8856ca" />
+<img width="1917" height="1013" alt="image" src="https://github.com/user-attachments/assets/1a81493f-5784-4c26-a5c2-ddda7145c74a" />
+
 
 ---
 
