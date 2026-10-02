@@ -494,9 +494,9 @@ flutter run
 
 > ✅ **Checkpoint 1.1** ถ่ายภาพหน้าจอ Google AI Studio ที่แสดงรูปภาพที่แนบ Prompt ที่ใช้ และผลลัพธ์ JSON ที่ได้ จากนั้นทดลองรันซ้ำอีก 2 ครั้งด้วยภาพและ Prompt เดิม
 
-```text
-บันทึกรูปผลลัพธ์ที่นี่
-```
+<img width="1283" height="737" alt="image" src="https://github.com/user-attachments/assets/b4f8622f-6770-45c6-8672-2ae4389de8b6" />
+<img width="1292" height="383" alt="image" src="https://github.com/user-attachments/assets/16a8a868-8b2e-4efa-81b7-94bafef7164a" />
+
 
 ### ขั้นตอนที่ 1.2: ทดลองเปิดใช้ Structured Output ใน AI Studio
 
@@ -504,8 +504,12 @@ flutter run
 
 > ✅ **Checkpoint 1.2** ถ่ายภาพหน้าจอที่แสดงการตั้งค่า Structured Output และผลลัพธ์ที่ได้ อธิบายว่าผลลัพธ์ที่ได้ต่างจากตอนไม่เปิด Structured Output ในขั้นตอน 1.1 อย่างไร (อ้างอิงบทหนังสือเรียนหัวข้อ 7.4)
 
-```text
-บันทึกผลลัพธ์ที่นี่
+<img width="1906" height="861" alt="image" src="https://github.com/user-attachments/assets/237632bc-df9b-4a3a-836f-1e4aecbb9365" />
+<img width="1383" height="590" alt="image" src="https://github.com/user-attachments/assets/8f43bafc-8d39-49aa-990a-303b118dc9b7" />
+<img width="1298" height="361" alt="image" src="https://github.com/user-attachments/assets/597e3e2f-a2d7-4558-bac8-c05e2b90a9d4" />
+```
+- ตอนไม่เปิด Structured Output ผลลัพธ์ที่ได้จะเป็นเพียงข้อความธรรมดา ที่โมเดลพยายามพิมพ์ออกมาให้หน้าตาคล้ายโครงสร้าง JSON แม้จะดูเหมือนใช้งานได้ แต่วิธีนี้ไม่มีการรับประกันความถูกต้อง หากโมเดลสร้างข้อความผิดพลาด (เช่น ลืมใส่เครื่องหมาย , หรือ ") จะทำให้โค้ดฝั่งแอปพลิเคชันพังทันทีเมื่อพยายามอ่านข้อมูล
+- ตอนเปิดใช้ Structured Output จะเห็นว่าผลลัพธ์ถูกจัดให้อยู่ในกล่องที่มีแถบป้ายกำกับว่า < > JSON อย่างชัดเจนที่มุมซ้ายบน สิ่งนี้แสดงให้เห็นว่าระบบได้บังคับ ให้โมเดลส่งผลลัพธ์กลับมาเป็นออบเจกต์ข้อมูล ที่ถูกต้องตามหลักไวยากรณ์ 100% และมีตัวแปร title, category, description ครบถ้วนตาม Schema ที่เรากำหนดไว้
 ```
 
 ---
