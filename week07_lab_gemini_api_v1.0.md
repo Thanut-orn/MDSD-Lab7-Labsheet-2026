@@ -507,6 +507,7 @@ flutter run
 <img width="1906" height="861" alt="image" src="https://github.com/user-attachments/assets/237632bc-df9b-4a3a-836f-1e4aecbb9365" />
 <img width="1383" height="590" alt="image" src="https://github.com/user-attachments/assets/8f43bafc-8d39-49aa-990a-303b118dc9b7" />
 <img width="1298" height="361" alt="image" src="https://github.com/user-attachments/assets/597e3e2f-a2d7-4558-bac8-c05e2b90a9d4" />
+
 ```
 - ตอนไม่เปิด Structured Output ผลลัพธ์ที่ได้จะเป็นเพียงข้อความธรรมดา ที่โมเดลพยายามพิมพ์ออกมาให้หน้าตาคล้ายโครงสร้าง JSON แม้จะดูเหมือนใช้งานได้ แต่วิธีนี้ไม่มีการรับประกันความถูกต้อง หากโมเดลสร้างข้อความผิดพลาด (เช่น ลืมใส่เครื่องหมาย , หรือ ") จะทำให้โค้ดฝั่งแอปพลิเคชันพังทันทีเมื่อพยายามอ่านข้อมูล
 - ตอนเปิดใช้ Structured Output จะเห็นว่าผลลัพธ์ถูกจัดให้อยู่ในกล่องที่มีแถบป้ายกำกับว่า < > JSON อย่างชัดเจนที่มุมซ้ายบน สิ่งนี้แสดงให้เห็นว่าระบบได้บังคับ ให้โมเดลส่งผลลัพธ์กลับมาเป็นออบเจกต์ข้อมูล ที่ถูกต้องตามหลักไวยากรณ์ 100% และมีตัวแปร title, category, description ครบถ้วนตาม Schema ที่เรากำหนดไว้
@@ -537,6 +538,7 @@ flutter run
 
 <img width="1917" height="1016" alt="image" src="https://github.com/user-attachments/assets/41c218e2-ebd7-4725-891e-c2cd4b0ec167" />
 <img width="1917" height="977" alt="image" src="https://github.com/user-attachments/assets/aa24a606-2bab-4ca4-b8b5-6e99d78f853f" />
+
 ```
 Gemini API เป็น Large Language Model (LLM) ซึ่งต้องใช้เวลาในการทำ Inference ประมวลผลและสร้างโทเคนคำตอบ (Token Generation) ตามความซับซ้อนของ Prompt จึงต้องเผื่อเวลา Timeout ไว้นานกว่า (20 วินาที) แตกต่างจาก OpenWeather API ที่เป็นการดึงข้อมูลสภาพอากาศสำเร็จรูปจากฐานข้อมูล (Database Query) ซึ่งประมวลผลได้เร็วมาก จึงตั้ง Timeout ไว้สั้นกว่าได้ (10 วินาที)
 ```
@@ -951,9 +953,10 @@ class ListingDraft {
 
 > ✅ **Checkpoint 4.1** รันแอปแล้วทดสอบเลือกภาพสินค้าจริง กดปุ่ม "ให้ AI ช่วยแนะนำ" ถ่ายภาพหน้าจอผลลัพธ์ที่ AI วิเคราะห์ได้ (title/category/description) ทดสอบซ้ำกับภาพสินค้าอย่างน้อย 3 ภาพที่ต่างกัน แนบภาพหน้าจอทั้ง 3 กรณี 
 
-```text
-บันทึกผลลัพธ์ที่นี่
-```
+<img width="1917" height="1007" alt="image" src="https://github.com/user-attachments/assets/00577eaa-4e5b-446d-a808-0df9b68994ef" />
+<img width="1917" height="1007" alt="image" src="https://github.com/user-attachments/assets/5b1ca6dd-ce40-462b-bddc-f25d1b34481e" />
+<img width="1917" height="1015" alt="image" src="https://github.com/user-attachments/assets/6bf879f9-ec0f-4094-8509-74c503d534c0" />
+
 ---
 
 ## ส่วนที่ 5: ออกแบบหน้าจอตรวจทานและแก้ไขก่อนยืนยัน (Human-in-the-loop)
@@ -971,9 +974,11 @@ class ListingDraft {
 เพิ่มปุ่มที่เก็บค่าจากฟอร์ม (ซึ่งอาจถูกผู้ใช้แก้ไขแล้วหรือไม่ก็ได้) เป็นร่างประกาศฉบับสุดท้ายไว้ใน State ของแอป (ยังไม่ต้องบันทึกถาวร เพราะเรื่อง Local Database อยู่ในสัปดาห์ที่ 8) หลังยืนยันสำเร็จ ให้แสดง `SnackBar` ยืนยัน (เช่น "บันทึกร่างประกาศเรียบร้อยแล้ว") แล้วล้างฟอร์ม (รูปภาพที่เลือก, ค่าใน `TextEditingController` ทั้ง 3 ช่อง) กลับสู่สถานะว่างเปล่าพร้อมเริ่มลงประกาศใหม่ **ไม่ต้อง `Navigator.pop()`** เหมือนหน้าที่เปิดด้วย `Navigator.push` เพราะตอนนี้ `SellItemPage` เป็น Tab หนึ่งใน Bottom Navigation Bar แล้ว (ตั้งแต่ขั้นตอนที่ 3.3) ไม่ได้ถูกเปิดแบบ Push/Pop อีกต่อไป ผู้ใช้ที่ต้องการกลับหน้าหลักให้กดที่ Tab "หน้าหลัก" ด้านล่างจอเองแทน
 
 > ✅ **Checkpoint 5.1** ถ่ายภาพหน้าจอ 2 ภาพเทียบกัน คือ (ก) ค่าที่ AI แนะนำมาตอนแรก และ (ข) ค่าหลังจากคุณแก้ไขบางส่วนแล้วกดยืนยัน 
-```text
-บันทึกผลลัพธ์ที่นี่
-```
+
+<img width="1917" height="1018" alt="image" src="https://github.com/user-attachments/assets/be430abc-57e9-44ec-977f-e6045cf5551c" />
+<img width="1917" height="1015" alt="Screenshot 2026-10-03 131848" src="https://github.com/user-attachments/assets/529a5b04-059f-40f9-8717-430c43f80d67" />
+<img width="1917" height="1018" alt="image" src="https://github.com/user-attachments/assets/1a2c436b-0c89-4810-9caa-e4d6ddca0840" />
+
 
 ---
 
@@ -1000,9 +1005,8 @@ class ListingDraft {
 
 > ✅ **Checkpoint 6.1** ถ่ายภาพหน้าจอ Error ที่แอปแสดงเมื่อ Gemini ปฏิเสธคำขอ  จากนั้น**เปลี่ยน `_prompt` ใน `sell_item_page.dart` กลับเป็นเวอร์ชันที่ใช้งานจริงตามส่วนที่ 4** ก่อนส่งงาน ⚠️ ขั้นตอนนี้สำคัญมาก ถ้าลืมเปลี่ยนกลับ ฟีเจอร์หลักของแอปจะใช้งานไม่ได้เลย เพราะ Prompt ที่เหลือทิ้งไว้จะถูก Gemini บล็อกทุกครั้ง
 
-```text
-บันทึกผลลัพธ์ที่นี่
-```
+<img width="1917" height="1015" alt="image" src="https://github.com/user-attachments/assets/fd21366b-01a9-4bf0-9d34-9f2584f87c58" />
+
 ---
 
 
